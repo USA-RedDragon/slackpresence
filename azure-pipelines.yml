@@ -83,5 +83,5 @@ jobs:
         inputs:
           command: custom
           customCommand: 'install -g vsce'
-      - script: vsce publish -p $(PUBLISH_KEY) `cat package.json | jq -r ".version"`
+      - script: vsce publish -p $(PUBLISH_KEY) `cat .version`
         displayName: 'Publish Extension'
