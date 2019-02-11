@@ -2,55 +2,7 @@ trigger:
 - master
 
 jobs:
-  - job: Windows
-    pool:
-      name: Hosted VS2017
-      demands: npm
-    steps:
-      - task: NodeTool@0
-        displayName: 'Use Node 10.15.x'
-        inputs:
-          versionSpec: '10.15.x'
-      - task: Npm@1
-        displayName: 'Install dependencies'
-        inputs:
-          command: 'install'
-          verbose: false
-      - task: Npm@1
-        displayName: 'Run Tests'
-        inputs:
-          command: custom
-          customCommand: 'run test'
-      - task: PublishCodeCoverageResults@1
-        inputs: 
-          codeCoverageTool: Cobertura
-          summaryFileLocation: '$(Build.SourcesDirectory)/coverage/cobertura-coverage.xml'
-          reportDirectory: '$(Build.SourcesDirectory)/coverage'
-  - job: macOS
-    pool:
-      name: Hosted macOS
-      demands: npm
-    steps:
-      - task: NodeTool@0
-        displayName: 'Use Node 10.15.x'
-        inputs:
-          versionSpec: '10.15.x'
-      - task: Npm@1
-        displayName: 'Install dependencies'
-        inputs:
-          command: 'install'
-          verbose: false
-      - task: Npm@1
-        displayName: 'Run Tests'
-        inputs:
-          command: custom
-          customCommand: 'run test'
-      - task: PublishCodeCoverageResults@1
-        inputs: 
-          codeCoverageTool: Cobertura
-          summaryFileLocation: '$(Build.SourcesDirectory)/coverage/cobertura-coverage.xml'
-          reportDirectory: '$(Build.SourcesDirectory)/coverage'
-  - job: Linux
+  - job: BuildAndTest
     pool:
       name: Hosted Ubuntu 1604
       demands: npm
@@ -78,11 +30,10 @@ jobs:
           codeCoverageTool: Cobertura
           summaryFileLocation: '$(Build.SourcesDirectory)/coverage/cobertura-coverage.xml'
           reportDirectory: '$(Build.SourcesDirectory)/coverage'
+      - task: PublishBuildArtifacts@1
   - job: Release
     dependsOn: 
-      - Linux
-      - Windows
-      - macOS
+      - BuildAndTest
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     pool:
       name: Hosted Ubuntu 1604
