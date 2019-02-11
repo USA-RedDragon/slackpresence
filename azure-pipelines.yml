@@ -24,8 +24,8 @@ jobs:
       - task: PublishCodeCoverageResults@1
         inputs: 
           codeCoverageTool: Cobertura
-          summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
-          reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
   - job: macOS
     pool:
       name: Hosted macOS
@@ -48,8 +48,8 @@ jobs:
       - task: PublishCodeCoverageResults@1
         inputs: 
           codeCoverageTool: Cobertura
-          summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
-          reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
   - job: Linux
     pool:
       name: Hosted Ubuntu 1604
@@ -76,8 +76,8 @@ jobs:
       - task: PublishCodeCoverageResults@1
         inputs: 
           codeCoverageTool: Cobertura
-          summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
-          reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
   - job: Release
     dependsOn: 
       - Linux
@@ -88,7 +88,7 @@ jobs:
       name: Hosted Ubuntu 1604
       demands: npm
     steps:
-      - task: NodeTool@0
+      - task: NodeTool@0  
         displayName: 'Use Node 10.15.x'
         inputs:
           versionSpec: '10.15.x'
