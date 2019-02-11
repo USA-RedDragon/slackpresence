@@ -20,6 +20,11 @@ jobs:
         inputs:
           command: custom
           customCommand: 'run test'
+      - task: PublishCodeCoverageResults@1
+        inputs: 
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
   - job: macOS
     pool:
       name: Hosted macOS
@@ -38,6 +43,11 @@ jobs:
         inputs:
           command: custom
           customCommand: 'run test'
+      - task: PublishCodeCoverageResults@1
+        inputs: 
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
   - job: Linux
     pool:
       name: Hosted Ubuntu 1604
@@ -60,6 +70,11 @@ jobs:
         displayName: 'Run tests'
         env:
           DISPLAY: :10
+      - task: PublishCodeCoverageResults@1
+        inputs: 
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+          reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
   - job: Release
     dependsOn: 
       - Linux
