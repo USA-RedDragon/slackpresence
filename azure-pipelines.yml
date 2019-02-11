@@ -21,8 +21,6 @@ jobs:
         inputs:
           command: custom
           customCommand: 'run test'
-      - script: 'type $(Build.SourcesDirectory)/coverage/coverage.xml'
-        displayName: 'Print Dir'
       - task: PublishCodeCoverageResults@1
         inputs: 
           codeCoverageTool: Cobertura
@@ -75,6 +73,8 @@ jobs:
         displayName: 'Run tests'
         env:
           DISPLAY: :10
+      - script: 'cat $(Build.SourcesDirectory)/coverage/coverage.xml'
+        displayName: 'Cat Coverage'
       - task: PublishCodeCoverageResults@1
         inputs: 
           codeCoverageTool: Cobertura
