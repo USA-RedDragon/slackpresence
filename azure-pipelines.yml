@@ -78,5 +78,10 @@ jobs:
         displayName: 'Install dependencies'
         inputs:
           verbose: false
+      - task: Npm@1
+        displayName: 'Install vsce'
+        inputs:
+          command: custom
+          customCommand: 'install -g vsce'
       - script: 'npm run release'
         displayName: 'Release'
