@@ -24,8 +24,8 @@ jobs:
       - task: PublishCodeCoverageResults@1
         inputs: 
           codeCoverageTool: Cobertura
-          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/coverage.xml'
-          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+          summaryFileLocation: '$(Build.SourcesDirectory)/coverage/coverage.xml'
+          reportDirectory: '$(Build.SourcesDirectory)/coverage'
   - job: macOS
     pool:
       name: Hosted macOS
@@ -48,8 +48,8 @@ jobs:
       - task: PublishCodeCoverageResults@1
         inputs: 
           codeCoverageTool: Cobertura
-          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/coverage.xml'
-          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+          summaryFileLocation: '$(Build.SourcesDirectory)/coverage/coverage.xml'
+          reportDirectory: '$(Build.SourcesDirectory)/coverage'
   - job: Linux
     pool:
       name: Hosted Ubuntu 1604
@@ -76,8 +76,8 @@ jobs:
       - task: PublishCodeCoverageResults@1
         inputs: 
           codeCoverageTool: Cobertura
-          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/coverage.xml'
-          reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+          summaryFileLocation: '$(Build.SourcesDirectory)/coverage/coverage.xml'
+          reportDirectory: '$(Build.SourcesDirectory)/coverage'
   - job: Release
     dependsOn: 
       - Linux
