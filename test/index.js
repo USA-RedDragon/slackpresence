@@ -17,7 +17,6 @@ const paths = require('path');
 
 const istanbul = require('istanbul');
 const Mocha = require('mocha');
-const remapIstanbul = require('remap-istanbul');
 
 // Linux: prevent a weird NPE when mocha on Linux requires the window size from the TTY
 // Since we are not running in a tty environment, we just implementt he method statically
@@ -187,19 +186,12 @@ class CoverageRunner {
 		// yes, do this again since some test runners could clean the dir initially created
 		_mkDirIfExists(reportingDir);
 		fs.writeFileSync(coverageFile, JSON.stringify(cov), 'utf8');
-		var remappedCollector = remapIstanbul.remap(cov, {
-			warn: function (warning) {
-				// We expect some warnings as any JS file without a typescript mapping will cause this.
-				// By default, we'll skip printing these to the console as it clutters it up
-				if (self.options.verbose) {
-					console.warn(warning);
-				}
-			}
-		});
 		var reporter = new istanbul.Reporter(undefined, reportingDir);
 		var reportTypes = (self.options.reports instanceof Array) ? self.options.reports : ['lcov'];
+		const collector = new istanbul.Collector();
+		collector.add(cov);
 		reporter.addAll(reportTypes);
-		reporter.write(remappedCollector, true, function () {
+		reporter.write(collector, true, function () {
 			console.log("reports written to " + reportingDir);
 		});
 	};
