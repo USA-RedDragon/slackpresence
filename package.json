@@ -18,7 +18,7 @@
 	"activationEvents": [
 		"*"
 	],
-	"main": "./extension.js",
+	"main": "./src/extension.js",
 	"contributes": {
 		"commands": [
 			{
@@ -63,7 +63,12 @@
 		"vscode": "^1.1.28",
 		"eslint": "^5.13.0",
 		"@types/node": "^10.12.21",
-		"@types/mocha": "^2.2.42"
+		"@types/mocha": "^2.2.42",
+		"@types/glob": "^7.1.1",
+		"decache": "^4.5.1",
+		"glob": "^7.1.3",
+		"istanbul": "^0.4.5",
+		"remap-istanbul": "^0.13.0"
 	},
 	"dependencies": {}
 }
