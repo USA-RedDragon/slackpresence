@@ -73,8 +73,10 @@ jobs:
         displayName: 'Run tests'
         env:
           DISPLAY: :10
-      - script: 'cat $(Build.SourcesDirectory)/coverage/coverage.xml'
+      - script: 'ls $(Build.SourcesDirectory)'
         displayName: 'Cat Coverage'
+      - script: 'ls $(Build.SourcesDirectory)/..'
+        displayName: 'Cat2 Coverage'
       - task: PublishCodeCoverageResults@1
         inputs: 
           codeCoverageTool: Cobertura
