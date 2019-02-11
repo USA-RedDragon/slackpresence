@@ -30,9 +30,19 @@ if (!tty.getWindowSize) {
 var mocha = new Mocha({
 	ui: 'tdd',
 	useColors: true,
+	reporter: 'mocha-junit-reporter',
+    reporterOptions: {
+        mochaFile: '../test_report.xml'
+    }
 });
 
 function configure(mochaOpts) {
+	Object.assign(mochaOpts, {
+		reporter: 'mocha-junit-reporter',
+		reporterOptions: {
+			mochaFile: '../test_report.xml'
+		}
+	});
 	mocha = new Mocha(mochaOpts);
 }
 
