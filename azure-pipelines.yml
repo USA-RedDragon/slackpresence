@@ -60,4 +60,23 @@ jobs:
         displayName: 'Run tests'
         env:
           DISPLAY: :10
-
+  - job: Release
+    dependsOn: 
+      - Linux
+      - Windows
+      - macOS
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    pool:
+      name: Hosted Ubuntu 1604
+      demands: npm
+    steps:
+      - task: NodeTool@0
+        displayName: 'Use Node 10.15.x'
+        inputs:
+          versionSpec: '10.15.x'
+      - task: Npm@1
+        displayName: 'Install dependencies'
+        inputs:
+          verbose: false
+      - script: 'npm run release'
+        displayName: 'Release'
