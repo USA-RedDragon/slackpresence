@@ -32,6 +32,10 @@ This extension contributes the following settings:
 
 Initial release of slackpresence
 
+### 0.0.2
+
+Share your workspace name as well
+
 -----------------------------------------------------------------------------------------------------------
 
 **Enjoy!**

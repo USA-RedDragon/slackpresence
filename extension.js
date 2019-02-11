@@ -4,6 +4,7 @@ const https = require('https');
 const http = require('http');
 const url = require('url');
 const querystring = require('querystring')
+const languages = require('./languages.js');
 
 var config = vscode.workspace.getConfiguration('slackpresence');
 
@@ -77,11 +78,16 @@ function sendActivity() {
 		const fileName = basename(vscode.window.activeTextEditor.document.fileName);
 		if (fileName != lastFile) {
 			lastFile = fileName;
-			const language = vscode.window.activeTextEditor.document.languageId;
-			console.log(`Working on ${language}: ${fileName}`);
+			const languageId = vscode.window.activeTextEditor.document.languageId;
+			var language = '';
+			if(languageId !== undefined) {
+				language += languages[languageId] + ': ';
+			}
+			const status = `Working on ${language}${fileName} in workspace ${vscode.workspace.name}`;
+			console.log(status);
 			const postData = {
 				profile: {
-					status_text: `Working on ${language}: ${fileName}`,
+					status_text: status,
 					status_emoji: ":vscode:",
 					status_expiration: 0
 				}
