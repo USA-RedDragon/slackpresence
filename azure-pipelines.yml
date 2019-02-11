@@ -2,54 +2,6 @@ trigger:
 - master
 
 jobs:
-  - job: Windows
-    pool:
-      name: Hosted VS2017
-      demands: npm
-    steps:
-      - task: NodeTool@0
-        displayName: 'Use Node 10.15.x'
-        inputs:
-          versionSpec: '10.15.x'
-      - task: Npm@1
-        displayName: 'Install dependencies'
-        inputs:
-          command: 'install'
-          verbose: false
-      - task: Npm@1
-        displayName: 'Run Tests'
-        inputs:
-          command: custom
-          customCommand: 'run test'
-      - task: PublishCodeCoverageResults@1
-        inputs: 
-          codeCoverageTool: Cobertura
-          summaryFileLocation: '$(Build.SourcesDirectory)/coverage/coverage.xml'
-          reportDirectory: '$(Build.SourcesDirectory)/coverage'
-  - job: macOS
-    pool:
-      name: Hosted macOS
-      demands: npm
-    steps:
-      - task: NodeTool@0
-        displayName: 'Use Node 10.15.x'
-        inputs:
-          versionSpec: '10.15.x'
-      - task: Npm@1
-        displayName: 'Install dependencies'
-        inputs:
-          command: 'install'
-          verbose: false
-      - task: Npm@1
-        displayName: 'Run Tests'
-        inputs:
-          command: custom
-          customCommand: 'run test'
-      - task: PublishCodeCoverageResults@1
-        inputs: 
-          codeCoverageTool: Cobertura
-          summaryFileLocation: '$(Build.SourcesDirectory)/coverage/coverage.xml'
-          reportDirectory: '$(Build.SourcesDirectory)/coverage'
   - job: Linux
     pool:
       name: Hosted Ubuntu 1604
@@ -73,7 +25,7 @@ jobs:
         displayName: 'Run tests'
         env:
           DISPLAY: :10
-      - script: 'ls $(Build.SourcesDirectory)'
+      - script: 'ls $(Build.SourcesDirectory)/coverage'
         displayName: 'Cat Coverage'
       - script: 'ls $(Build.SourcesDirectory)/..'
         displayName: 'Cat2 Coverage'
@@ -85,8 +37,6 @@ jobs:
   - job: Release
     dependsOn: 
       - Linux
-      - Windows
-      - macOS
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     pool:
       name: Hosted Ubuntu 1604
