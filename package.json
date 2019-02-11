@@ -2,7 +2,7 @@
 	"name": "slackpresence",
 	"displayName": "slackpresence",
 	"description": "Sets your Slack status to the file name and language you're working in",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "slackpresence",
 	"repository": {
 		"type": "git",
