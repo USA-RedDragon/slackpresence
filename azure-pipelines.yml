@@ -21,7 +21,7 @@ jobs:
         inputs:
           command: custom
           customCommand: 'run test'
-      - script: 'echo $(Build.SourcesDirectory)'
+      - script: 'type $(Build.SourcesDirectory)/coverage/coverage.xml'
         displayName: 'Print Dir'
       - task: PublishCodeCoverageResults@1
         inputs: 
