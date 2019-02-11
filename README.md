@@ -21,6 +21,7 @@ This extension contributes the following settings:
 
 * `slackpresence.enabled`: enable/disable this extension
 * `slackpresence.authToken`: the auth token for Slack API calls, you usually shouldn't touch this
+* `slackpresence.shareWorkspace`: whether to share the workspace you're working in on Slack
 
 ## Known Issues
 
@@ -35,6 +36,10 @@ Initial release of slackpresence
 ### 0.0.2
 
 Share your workspace name as well
+
+### 0.0.3
+
+You don't _have_ to share your workspace name
 
 -----------------------------------------------------------------------------------------------------------
 

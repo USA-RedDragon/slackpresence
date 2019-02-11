@@ -83,7 +83,11 @@ function sendActivity() {
 			if(languageId !== undefined) {
 				language += languages[languageId] + ': ';
 			}
-			const status = `Working on ${language}${fileName} in workspace ${vscode.workspace.name}`;
+			var workspace = '';
+			if(config.get('shareWorkspace')) {
+				workspace += ` in workspace ${vscode.workspace.name}`;
+			}
+			const status = `Working on ${language}${fileName}${workspace}`;
 			console.log(status);
 			const postData = {
 				profile: {

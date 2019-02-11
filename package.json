@@ -2,7 +2,7 @@
 	"name": "slackpresence",
 	"displayName": "slackpresence",
 	"description": "Sets your Slack status to the file name and language you're working in",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "slackpresence",
 	"repository": {
 		"type": "git",
@@ -44,6 +44,11 @@
 						"type": "boolean",
 						"default": true,
 						"description": "Controls if the Slack Presence should show across all workspaces"
+					},
+					"slackpresence.shareWorkspace": {
+						"type": "boolean",
+						"default": false,
+						"description": "Controls if the Slack Presence should share your workspace name"
 					}
 				}
 			}
