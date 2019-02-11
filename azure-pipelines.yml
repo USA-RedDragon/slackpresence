@@ -21,6 +21,8 @@ jobs:
         inputs:
           command: custom
           customCommand: 'run test'
+      - script: 'echo $(Build.SourcesDirectory)'
+        displayName: 'Print Dir'
       - task: PublishCodeCoverageResults@1
         inputs: 
           codeCoverageTool: Cobertura
