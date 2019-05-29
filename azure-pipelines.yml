@@ -25,15 +25,6 @@ jobs:
         displayName: 'Run tests'
         env:
           DISPLAY: :10
-      - task: PublishCodeCoverageResults@1
-        inputs: 
-          codeCoverageTool: Cobertura
-          summaryFileLocation: '$(Build.SourcesDirectory)/coverage/cobertura-coverage.xml'
-          reportDirectory: '$(Build.SourcesDirectory)/coverage'
-          additionalFiles: '$(Build.SourcesDirectory)/src/**.js'
-      - task: PublishBuildArtifacts@1
-        inputs:
-          pathtoPublish: $(Build.SourcesDirectory)
   - job: Release
     dependsOn: 
       - BuildAndTest

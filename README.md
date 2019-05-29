@@ -44,7 +44,8 @@ You don't _have_ to share your workspace name
 
 ### 0.0.4
 
-Add Vue support
+- Add Vue support
+- Bump tar from 2.2.1 to 2.2.2 to fix [CVE-2018-20834](https://nvd.nist.gov/vuln/detail/CVE-2018-20834)
 
 -----------------------------------------------------------------------------------------------------------
 
