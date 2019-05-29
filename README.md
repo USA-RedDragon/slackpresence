@@ -41,6 +41,11 @@ Share your workspace name as well
 
 You don't _have_ to share your workspace name
 
+
+### 0.0.4
+
+Add Vue support
+
 -----------------------------------------------------------------------------------------------------------
 
 **Enjoy!**
