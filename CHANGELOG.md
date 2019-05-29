@@ -24,3 +24,7 @@ You don't _have_ to share your workspace name
 ## 0.0.5
 
 * Rewrite in TypeScript
+
+## 0.0.6
+
+* Add CircleCI support

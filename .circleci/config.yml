@@ -1,0 +1,61 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: node:10.15
+
+    working_directory: ~/repo
+
+    steps:
+      - run:
+          name: Install System Dependencies
+          command: |
+            apt-get update && apt-get install --no-install-recommends -y \
+              xvfb \
+              bash \
+              git \
+              libgtk-3-0 \
+              libxtst6 \
+              libxss1 \
+              libnss3 \
+              libasound2 \
+              && rm -rf /var/lib/apt/lists/*
+      - checkout
+      - run:
+          name: Install Node Dependencies
+          command: npm ci && npm run pkgvars
+      - run:
+          name: Test
+          command: |
+            bash -c "/usr/bin/Xvfb :10 -ac >> /tmp/Xvfb.out 2>&1 & disown -ar && DISPLAY=":10" npm run test"
+
+  deploy:
+    docker:
+      - image: circleci/node:10.15
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: npm ci && npm run pkgvars
+      - run:
+          name: Install VSCE
+          command: npm install -g vsce
+      - run:
+          name: Publish
+          command: vsce publish -p ${VSCE_PAT} || true
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                master
