@@ -42,7 +42,7 @@ jobs:
           command: npm ci && npm run pkgvars
       - run:
           name: Install VSCE
-          command: npm install -g vsce
+          command: sudo npm install -g vsce
       - run:
           name: Publish
           command: vsce publish -p ${VSCE_PAT} || true
