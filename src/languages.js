@@ -51,6 +51,7 @@ module.exports = {
     "typescriptreact": "React (TypeScript)",
     "tex": "TeX",
     "vb": "Visual Basic",
+    "vue": "Vue",
     "xml": "XML",
     "xsl": "XSL",
     "yaml": "YAML"
