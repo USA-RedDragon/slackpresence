@@ -27,26 +27,6 @@ This extension contributes the following settings:
 
 * There are few features, I'm still learning VSCode Extensions
 
-## Release Notes
-
-### 0.0.1
-
-Initial release of slackpresence
-
-### 0.0.2
-
-Share your workspace name as well
-
-### 0.0.3
-
-You don't _have_ to share your workspace name
-
-
-### 0.0.4
-
-- Add Vue support
-- Bump tar from 2.2.1 to 2.2.2 to fix [CVE-2018-20834](https://nvd.nist.gov/vuln/detail/CVE-2018-20834)
-
 -----------------------------------------------------------------------------------------------------------
 
 **Enjoy!**

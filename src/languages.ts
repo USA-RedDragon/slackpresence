@@ -1,4 +1,4 @@
-module.exports = {
+const languages: { [name: string]: string } = {
     "abap": "ABAP",
     "bat": "Windows Bat",
     "bibtex": "BibTeX",
@@ -55,4 +55,6 @@ module.exports = {
     "xml": "XML",
     "xsl": "XSL",
     "yaml": "YAML"
-}
+};
+
+export default languages;
