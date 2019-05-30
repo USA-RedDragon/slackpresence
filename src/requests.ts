@@ -3,8 +3,8 @@ import config from './config';
 import * as https from 'https';
 import * as http from 'http';
 
-export function sendRequest(path: string, data: object|string, callback = (res: http.IncomingMessage) => {}) {
-	const postData = data instanceof Object ? JSON.stringify(data) : querystring.stringify(data);
+export function sendRequest(path: string, data: object|string, json = true, callback = (res: http.IncomingMessage) => {}) {
+	const postData = json ? JSON.stringify(data) : querystring.stringify(data);
 	const options: https.RequestOptions = {
 		hostname: 'slack.com',
 		port: 443,
@@ -12,7 +12,7 @@ export function sendRequest(path: string, data: object|string, callback = (res: 
 		method: 'POST',
 		headers: {
 			'Authorization': `Bearer ${config.get('authToken')}`,
-			'Content-Type': data instanceof Object ? 'application/json; charset=utf-8' : 'application/x-www-form-urlencoded',
+			'Content-Type': json ? 'application/json; charset=utf-8' : 'application/x-www-form-urlencoded',
 			'Content-Length': postData.length
 		}
 	};

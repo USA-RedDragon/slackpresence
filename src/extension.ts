@@ -32,11 +32,11 @@ function sendActivity() {
 			const postData = {
 				profile: {
 					status_text: status,
-					status_emoji: ":vscode:",
+					status_emoji: config.get('icon'),
 					status_expiration: 0
 				}
 			};
-			sendRequest('/api/users.profile.set', postData, (res: http.IncomingMessage) => {
+			sendRequest('/api/users.profile.set', postData, true, (res: http.IncomingMessage) => {
 				var body = '';
 		
 				res.on('data', (chunk) => {

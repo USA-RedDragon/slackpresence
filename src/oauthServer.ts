@@ -10,18 +10,20 @@ const server = http.createServer((req: http.IncomingMessage, res: http.ServerRes
     server.close();
     if(req.url) {
         var query = url.parse(req.url, true).query;
+        console.log(`Code "${query.code}"`);
         sendRequest('/api/oauth.access', {
             client_id: '5167321442.546836577892',
             client_secret: 'bb787469ad4ce3ad53415a0e05bc288d',
             code: query.code,
             redirect_uri: 'http://localhost:8989'
-        }, (res: http.IncomingMessage) => {
+        }, false, (res: http.IncomingMessage) => {
             var body = '';
             res.on('data', (chunk) => {
                 body += chunk;
             });
             res.on('end', () => {
                 var response = JSON.parse(body);
+                console.log(response);
                 if (!response.error) {
                     config.update('authToken', response.access_token, true).then(() => {
                         startSharing();

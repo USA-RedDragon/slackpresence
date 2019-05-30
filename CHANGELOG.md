@@ -42,3 +42,7 @@ You don't _have_ to share your workspace name
 ## 0.0.10
 
 * Remove badges
+
+## 0.0.11
+
+* Make the status icon configurable

@@ -2,7 +2,7 @@
 	"name": "slackpresence",
 	"displayName": "slackpresence",
 	"description": "Sets your Slack status to the file name and language you're working in",
-	"version": "0.0.10",
+	"version": "0.0.11",
 	"publisher": "slackpresence",
 	"repository": {
 		"type": "git",
@@ -49,6 +49,11 @@
 						"type": "boolean",
 						"default": false,
 						"description": "Controls if the Slack Presence should share your workspace name"
+					},
+					"slackpresence.icon": {
+						"type": "string",
+						"default": ":vscode:",
+						"description": "The Slack status icon to use. Defaults to :vscode:"
 					}
 				}
 			}
