@@ -1,7 +1,5 @@
 # slackpresence README
 
-[![CircleCI](https://circleci.com/gh/USA-RedDragon/slackpresence/tree/master.svg?style=svg)](https://circleci.com/gh/USA-RedDragon/slackpresence/tree/master)
-
 Sets your Slack status to the file name and language you're working in
 
 ## Features
