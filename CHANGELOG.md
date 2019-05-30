@@ -36,3 +36,9 @@ You don't _have_ to share your workspace name
 ## 0.0.8
 
 * Update badges to be able to publish again
+
+## 0.0.9
+
+## 0.0.10
+
+* Remove badges

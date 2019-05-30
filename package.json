@@ -2,7 +2,7 @@
 	"name": "slackpresence",
 	"displayName": "slackpresence",
 	"description": "Sets your Slack status to the file name and language you're working in",
-	"version": "0.0.8",
+	"version": "0.0.10",
 	"publisher": "slackpresence",
 	"repository": {
 		"type": "git",
@@ -19,28 +19,6 @@
 		"*"
 	],
 	"main": "./out/extension.js",
-	"badges": [
-        {
-            "href": "https://circleci.com/gh/USA-RedDragon/slackpresence",
-            "url": "https://circleci.com/gh/USA-RedDragon/slackpresence/tree/master.svg?style=svg",
-            "description": "CircleCI"
-		},
-		{
-            "href": "https://marketplace.visualstudio.com/items?itemName=slackpresence.slackpresence",
-            "url": "https://vsmarketplacebadge.apphb.com/version/slackpresence.slackpresence.svg",
-            "description": "Visual Studio Marketplace"
-		},
-		{
-            "href": "https://marketplace.visualstudio.com/items?itemName=slackpresence.slackpresence",
-            "url": "https://vsmarketplacebadge.apphb.com/installs/slackpresence.slackpresence.svg",
-            "description": "Visual Studio Marketplace Installs"
-		},
-		{
-            "href": "https://marketplace.visualstudio.com/items?itemName=slackpresence.slackpresence",
-            "url": "https://vsmarketplacebadge.apphb.com/rating-short/slackpresence.slackpresence.svg",
-            "description": "Visual Studio Marketplace Rating"
-		}
-    ],
 	"contributes": {
 		"commands": [
 			{
