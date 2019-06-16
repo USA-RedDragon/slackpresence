@@ -5,10 +5,10 @@ import * as http from 'http';
 
 export function sendRequest(
 	path: string,
-	data: object|string,
+	data: object | string,
 	json = true,
 	authToken: string = '',
-	callback = (res: http.IncomingMessage) => {}) {
+	callback = (res: http.IncomingMessage) => { }) {
 	const postData = json ? JSON.stringify(data) : querystring.stringify(data);
 	const options: https.RequestOptions = {
 		hostname: 'slack.com',

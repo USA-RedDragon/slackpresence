@@ -20,11 +20,11 @@ function sendActivity() {
 			lastFile = fileName;
 			const languageId = vscode.window.activeTextEditor.document.languageId;
 			var language = '';
-			if(languageId !== undefined) {
+			if (languageId !== undefined) {
 				language += `${languages[languageId]}: `;
 			}
 			var workspace = '';
-			if(config.get('shareWorkspace')) {
+			if (config.get('shareWorkspace')) {
 				workspace += ` in workspace ${vscode.workspace.name}`;
 			}
 			const status = `Working on ${language}${fileName}${workspace}`;
@@ -36,12 +36,12 @@ function sendActivity() {
 					status_expiration: 0
 				}
 			};
-			const authTokens: string[]|undefined = config.get('authTokens');
-			if(authTokens) {
+			const authTokens: string[] | undefined = config.get('authTokens');
+			if (authTokens) {
 				authTokens.forEach((token: string) => {
 					sendRequest('/api/users.profile.set', postData, true, token, (res: http.IncomingMessage) => {
 						var body = '';
-				
+
 						res.on('data', (chunk) => {
 							body += chunk;
 						});
@@ -68,9 +68,9 @@ export function startSharing() {
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log('slackpresence is active');
-	if(config.get('authToken')) {
+	if (config.get('authToken')) {
 		console.log('converting old authToken to authTokens');
-		config.update('authTokens', [ config.get('authToken') ], true);
+		config.update('authTokens', [config.get('authToken')], true);
 		config.update('authToken', undefined, true);
 	}
 
@@ -102,15 +102,15 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.executeCommand(
 			"vscode.open",
 			vscode.Uri.parse(
-			  "https://slack.com/oauth/authorize?client_id=5167321442.546836577892&scope=users.profile:write"
+				"https://slack.com/oauth/authorize?client_id=5167321442.546836577892&scope=users.profile:write"
 			)
-  		);
+		);
 	});
 
 	context.subscriptions.push(enabler, disabler, register);
 }
 
-export  function deactivate() {
+export function deactivate() {
 	clearTimeout(slackTimer);
 	const postData = {
 		profile: {
