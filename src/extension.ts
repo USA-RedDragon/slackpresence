@@ -118,5 +118,10 @@ export  function deactivate() {
 			status_emoji: ''
 		}
 	};
-	return sendRequest('/api/users.profile.set', postData);
+	const authTokens: string[] | undefined = config.get('authTokens');
+	if (authTokens) {
+		authTokens.forEach((token: string) => {
+			sendRequest('/api/users.profile.set', postData, true, token);
+		});
+	}
 }

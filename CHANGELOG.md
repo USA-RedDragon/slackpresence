@@ -58,3 +58,7 @@ You don't _have_ to share your workspace name
 ## 0.0.14
 
 * Add support for multiple workspaces
+
+## 0.0.15
+
+* Fixup deactivate()
