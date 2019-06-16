@@ -49,4 +49,8 @@ You don't _have_ to share your workspace name
 
 ## 0.0.12
 
-* Default to a standard icon: :sprial_note_pad:
+* Default to a standard icon: :sprial_node_pad:
+
+## 0.0.13
+
+* Fix typo: :sprial_node_pad: -> :sprial_note_pad:

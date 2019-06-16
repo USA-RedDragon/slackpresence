@@ -2,7 +2,7 @@
 	"name": "slackpresence",
 	"displayName": "slackpresence",
 	"description": "Sets your Slack status to the file name and language you're working in",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"publisher": "slackpresence",
 	"repository": {
 		"type": "git",
@@ -52,8 +52,8 @@
 					},
 					"slackpresence.icon": {
 						"type": "string",
-						"default": ":spiral_node_pad:",
-						"description": "The Slack status icon to use. Defaults to :spiral_node_pad:"
+						"default": ":spiral_note_pad:",
+						"description": "The Slack status icon to use. Defaults to :spiral_note_pad:"
 					}
 				}
 			}

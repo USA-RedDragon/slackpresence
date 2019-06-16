@@ -22,7 +22,7 @@ This extension contributes the following settings:
 * `slackpresence.enabled`: enable/disable this extension
 * `slackpresence.authToken`: the auth token for Slack API calls, you usually shouldn't touch this
 * `slackpresence.shareWorkspace`: whether to share the workspace you're working in on Slack
-* `slackpresence.icon`: The Slack status icon to use. Defaults to `:spiral_node_pad:`
+* `slackpresence.icon`: The Slack status icon to use. Defaults to `:spiral_note_pad:`
 
 ## Known Issues
 
