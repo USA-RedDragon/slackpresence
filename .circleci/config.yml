@@ -28,6 +28,28 @@ jobs:
           name: Test
           command: |
             bash -c "/usr/bin/Xvfb :10 -ac >> /tmp/Xvfb.out 2>&1 & disown -ar && DISPLAY=":10" npm run test"
+      - store_artifacts:
+          path: coverage
+
+  lint:
+    docker:
+      - image: circleci/node:10.15
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: npm ci && npm run pkgvars
+      - run:
+          name: Make testresults folder
+          command: mkdir -p ./testresults/tslint/
+      - run:
+          name: Lint
+          command: tslint --format junit --project . -o ./testresults/tslint/results.xml
+      - store_test_results:
+          path: testresults
 
   deploy:
     docker:
@@ -52,9 +74,11 @@ workflows:
   workflow:
     jobs:
       - test
+      - lint
       - deploy:
           requires:
             - test
+            - lint
           filters:
             branches:
               only:

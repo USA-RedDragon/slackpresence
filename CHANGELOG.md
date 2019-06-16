@@ -62,3 +62,9 @@ You don't _have_ to share your workspace name
 ## 0.0.15
 
 * Fixup deactivate()
+
+## 0.0.16
+
+* Fix lint issues
+* Add code coverage to CI
+* Add lint to CI
