@@ -46,3 +46,7 @@ You don't _have_ to share your workspace name
 ## 0.0.11
 
 * Make the status icon configurable
+
+## 0.0.12
+
+* Default to a standard icon: :sprial_note_pad:
