@@ -16,7 +16,7 @@ const server = http.createServer((req: http.IncomingMessage, res: http.ServerRes
             client_secret: 'bb787469ad4ce3ad53415a0e05bc288d',
             code: query.code,
             redirect_uri: 'http://localhost:8989'
-        }, false, (res: http.IncomingMessage) => {
+        }, false, '', (res: http.IncomingMessage) => {
             var body = '';
             res.on('data', (chunk) => {
                 body += chunk;
@@ -25,7 +25,13 @@ const server = http.createServer((req: http.IncomingMessage, res: http.ServerRes
                 var response = JSON.parse(body);
                 console.log(response);
                 if (!response.error) {
-                    config.update('authToken', response.access_token, true).then(() => {
+                    let authTokens: string[]|undefined = config.get('authTokens');
+                    if(authTokens === undefined) {
+                        authTokens = [ response.access_token ];
+                    } else {
+                        authTokens.push(response.access_token);
+                    }
+                    config.update('authTokens', authTokens, true).then(() => {
                         startSharing();
                     });
                 } else {

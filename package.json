@@ -2,7 +2,7 @@
 	"name": "slackpresence",
 	"displayName": "slackpresence",
 	"description": "Sets your Slack status to the file name and language you're working in",
-	"version": "0.0.13",
+	"version": "0.0.14",
 	"publisher": "slackpresence",
 	"repository": {
 		"type": "git",
@@ -28,6 +28,10 @@
 			{
 				"command": "slackpresence.disable",
 				"title": "Disable Slack Presence in the Current Workspace"
+			},
+			{
+				"command": "slackpresence.register",
+				"title": "Add Slack Presence to another Slack workspace"
 			}
 		],
 		"configuration": [
@@ -35,10 +39,22 @@
 				"title": "Slack Presence Configuration",
 				"type": "object",
 				"properties": {
+					"slackpresence.authTokens": {
+						"type": "array",
+						"default": [],
+						"description": "Only modify this if you know what you are doing (most of you don't)",
+						"items": {
+							"anyOf": [
+								{
+									"type": "string"
+								}
+							]
+						}
+					},
 					"slackpresence.authToken": {
 						"type": "string",
 						"default": "",
-						"description": "Only modify this if you know what you are doing (most of you don't)"
+						"description": "Deprecated: Only modify this if you know what you are doing (most of you don't)"
 					},
 					"slackpresence.enabled": {
 						"type": "boolean",

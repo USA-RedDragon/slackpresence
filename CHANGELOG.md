@@ -54,3 +54,7 @@ You don't _have_ to share your workspace name
 ## 0.0.13
 
 * Fix typo: :sprial_node_pad: -> :sprial_note_pad:
+
+## 0.0.14
+
+* Add support for multiple workspaces

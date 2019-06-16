@@ -36,19 +36,24 @@ function sendActivity() {
 					status_expiration: 0
 				}
 			};
-			sendRequest('/api/users.profile.set', postData, true, (res: http.IncomingMessage) => {
-				var body = '';
-		
-				res.on('data', (chunk) => {
-					body += chunk;
+			const authTokens: string[]|undefined = config.get('authTokens');
+			if(authTokens) {
+				authTokens.forEach((token: string) => {
+					sendRequest('/api/users.profile.set', postData, true, token, (res: http.IncomingMessage) => {
+						var body = '';
+				
+						res.on('data', (chunk) => {
+							body += chunk;
+						});
+						res.on('end', () => {
+							var response = JSON.parse(body);
+							if (response.error) {
+								console.log(response.error);
+							}
+						});
+					});
 				});
-				res.on('end', () => {
-					var response = JSON.parse(body);
-					if (response.error) {
-						console.log(response.error);
-					}
-				});
-			});
+			}
 		}
 	}
 }
@@ -63,10 +68,15 @@ export function startSharing() {
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log('slackpresence is active');
+	if(config.get('authToken')) {
+		console.log('converting old authToken to authTokens');
+		config.update('authTokens', [ config.get('authToken') ], true);
+		config.update('authToken', undefined, true);
+	}
 
 	if (config.get('enabled')) {
 		statusBarIcon.show();
-		if (!config.get('authToken')) {
+		if (!config.get('authTokens')) {
 			vscode.window.showErrorMessage('You must install the Slack Integration into your workspace\n[Add to Slack](https://slack.com/oauth/authorize?client_id=5167321442.546836577892&scope=users.profile:write)');
 			createOauthListener();
 			statusBarIcon.text = '$(pulse) Error connecting to Slack...';
@@ -87,7 +97,17 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage('Disabled Slack Presence for this workspace.');
 	});
 
-	context.subscriptions.push(enabler, disabler);
+	const register = vscode.commands.registerCommand('slackpresence.register', () => {
+		createOauthListener();
+		vscode.commands.executeCommand(
+			"vscode.open",
+			vscode.Uri.parse(
+			  "https://slack.com/oauth/authorize?client_id=5167321442.546836577892&scope=users.profile:write"
+			)
+  		);
+	});
+
+	context.subscriptions.push(enabler, disabler, register);
 }
 
 export  function deactivate() {

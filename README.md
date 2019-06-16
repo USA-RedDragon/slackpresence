@@ -13,14 +13,11 @@ My Slack [app](https://slack.com/oauth/authorize?client_id=5167321442.5468365778
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
 * `slackpresence.enabled`: enable/disable this extension
-* `slackpresence.authToken`: the auth token for Slack API calls, you usually shouldn't touch this
+* `slackpresence.authToken`: Deprecated: the auth token for Slack API calls, you usually shouldn't touch this
+* `slackpresence.authTokens`: the auth tokens for Slack API calls, you usually shouldn't touch this
 * `slackpresence.shareWorkspace`: whether to share the workspace you're working in on Slack
 * `slackpresence.icon`: The Slack status icon to use. Defaults to `:spiral_note_pad:`
 
