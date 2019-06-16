@@ -52,8 +52,8 @@
 					},
 					"slackpresence.icon": {
 						"type": "string",
-						"default": ":vscode:",
-						"description": "The Slack status icon to use. Defaults to :vscode:"
+						"default": ":spiral_node_pad:",
+						"description": "The Slack status icon to use. Defaults to :spiral_node_pad:"
 					}
 				}
 			}
